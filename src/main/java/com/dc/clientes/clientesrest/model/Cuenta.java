@@ -52,4 +52,11 @@ public class Cuenta {
     public void setSaldo(BigDecimal saldo) {
         this.saldo = saldo;
     }
+
+    public void debito(BigDecimal valor) {
+        this.saldo = this.saldo.subtract(valor);
+    }
+    public void credito(BigDecimal valor){
+        this.saldo = this.saldo.add(valor);
+    }
 }
