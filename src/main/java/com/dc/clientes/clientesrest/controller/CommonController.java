@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class CommonController {
 
 
-    private static final String API_URL = "/api";
+    public static final String API_URL = "/api";
     public  static final String API_CLIENTES = API_URL + "/clientes";
 }
