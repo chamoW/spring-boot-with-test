@@ -20,8 +20,10 @@ public class ResponseFactory {
             return new ResponseData(getEmptyDataHeader());
         }
 
-        if (data != null && data.getClass().isArray()) {
+        if (data.getClass().isArray()) {
             return new ResponseData(getSuccessHeader("Datos cargados correctamente"), data);
+        } else if (data instanceof String) {
+            return new ResponseData(getSuccessHeader(data.toString()));
 
         } else {
             return new ResponseData(getSuccessHeader("Registro encontrado"), data);

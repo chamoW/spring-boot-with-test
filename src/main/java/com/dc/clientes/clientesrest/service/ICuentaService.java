@@ -4,11 +4,16 @@
 
 package com.dc.clientes.clientesrest.service;
 
+import com.dc.clientes.clientesrest.model.Cliente;
 import com.dc.clientes.clientesrest.model.Cuenta;
 
 import java.math.BigDecimal;
+import java.util.List;
+
 
 public interface ICuentaService {
+
+    public List<Cuenta> findAll();
 
     Cuenta findById(Long id);
 

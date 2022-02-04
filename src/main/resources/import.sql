@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2021. Wladimir López derechos reservados
+ */
+
 /* Populate tabla clientes */
 INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Andrés', 'Guzmán', 'profesor@bolsadeideas.com', '2018-01-01');
 INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Mr. John', 'Doe', 'john.doe@gmail.com', '2018-01-02');
@@ -11,3 +15,10 @@ INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Dr. James', 'G
 INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Magma', 'Lee', 'magma.lee@gmail.com', '2018-03-04');
 INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Tornado', 'Roe', 'tornado.roe@gmail.com', '2018-03-05');
 INSERT INTO clientes (nombre, apellido, email, create_at) VALUES('Jade', 'Doe', 'jane.doe@gmail.com', '2018-03-06');
+
+/* Populate tabla cuentas */
+INSERT INTO cuentas (persona, saldo) VALUES ('Andres', 1000);
+INSERT INTO cuentas (persona, saldo) VALUES ('John', 2000);
+
+/* Populate tabla bancos */
+INSERT INTO bancos (nombre, total_tranfers) VALUES ('El banco financiero', 0);

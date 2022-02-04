@@ -12,8 +12,10 @@ import com.dc.clientes.clientesrest.service.ICuentaService;
 import com.sun.javaws.exceptions.InvalidArgumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class CuentaService implements ICuentaService {
@@ -23,6 +25,12 @@ public class CuentaService implements ICuentaService {
 
     @Autowired
     private IBancoRepository bancoRepository;
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Cuenta> findAll() {
+        return cuentaRepository.findAll();
+    }
 
     @Override
     public Cuenta findById(Long id) {

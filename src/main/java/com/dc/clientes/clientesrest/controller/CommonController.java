@@ -9,4 +9,5 @@ public class CommonController {
 
     public static final String API_URL = "/api";
     public  static final String API_CLIENTES = API_URL + "/clientes";
+    public  static final String API_CUENTAS = API_URL + "/cuentas";
 }
