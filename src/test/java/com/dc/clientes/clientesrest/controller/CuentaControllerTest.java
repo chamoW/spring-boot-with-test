@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -50,16 +52,17 @@ class CuentaControllerTest {
 
 
         //When
-        mockMvc.perform(post("/api/cuentas/transferMoney")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(dto)))
+        mockMvc.perform(
+                post("/api/cuentas/transferMoney")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(dto)))
 
                 //Then
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.header.code").value("200"))
                 .andExpect(jsonPath("$.header.message").value("Transferencia realizada con éxito!"))
-        .andDo(print());
+                .andDo(print());
 
 
     }
@@ -80,13 +83,46 @@ class CuentaControllerTest {
         mockMvc.perform(get("/api/cuentas/"))
                 .andDo(print())
                 .andExpect(status().isOk())
-        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        .andExpect(jsonPath("$.data[0].id").value(1l))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.data[0].id").value(1l))
                 .andExpect(jsonPath("$.data[0].persona").value("Wladimir"))
                 .andExpect(jsonPath("$.data", hasSize(1)))
 
         ;
 
         verify(service).findAll();
+    }
+
+    @Test
+    void testSave() throws Exception {
+        //Given
+        Cuenta cuenta = new Cuenta(null, "Wladimir", new BigDecimal("3000"));
+
+        when(service.save(any())).then(invocation -> {
+            //Se captura lo enviado y se cambia la data
+            Cuenta cuentaModificated = invocation.getArgument(0);
+            cuentaModificated.setPersona("Wladimir López");
+            cuentaModificated.setId(3L);
+            return cuentaModificated;
+        });
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        //When
+        mockMvc.perform(post("/api/cuentas/")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(cuenta))
+        )
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.header.code").value("200"))
+                .andExpect(jsonPath("$.data.id", is(3)))
+                .andExpect(jsonPath("$.data.persona", is("Wladimir López")))
+                .andExpect(jsonPath("$.data.saldo", is(3000)))
+                .andDo(print());
+
+
+        //Para verificar que se pasa por el médot save del servicio
+        verify(service).save(any());
+
     }
 }

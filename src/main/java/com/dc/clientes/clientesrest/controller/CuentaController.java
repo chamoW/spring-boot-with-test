@@ -30,7 +30,7 @@ public class CuentaController extends CommonController {
     @Autowired
     private CuentaService cuentaService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseData getAll() {
         try {
 
@@ -52,7 +52,7 @@ public class CuentaController extends CommonController {
 
             Cuenta data = cuentaService.save(cuenta);
 
-            return ResponseFactory.getSuscessResponse(data);
+            return ResponseFactory.getSuscessResponse(data, "Registro guardado correctamente");
 
         } catch (Exception e) {
             return ResponseFactory.getErrorResponse(e.getMessage());

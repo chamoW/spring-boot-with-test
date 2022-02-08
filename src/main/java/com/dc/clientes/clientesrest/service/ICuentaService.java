@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface ICuentaService {
 
-    public List<Cuenta> findAll();
+    List<Cuenta> findAll();
 
     Cuenta save(Cuenta cuenta);
 
