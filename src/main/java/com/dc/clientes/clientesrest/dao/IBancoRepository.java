@@ -7,6 +7,13 @@ package com.dc.clientes.clientesrest.dao;
 import com.dc.clientes.clientesrest.model.Banco;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface IBancoRepository  extends JpaRepository<Banco, Long> {
+import java.util.List;
+import java.util.Optional;
 
+public interface IBancoRepository  extends JpaRepository<Banco, Long> {
+    List<Banco> findAll();
+
+    Optional<Banco> findById(Long id);
+
+    void update(Banco banco);
 }

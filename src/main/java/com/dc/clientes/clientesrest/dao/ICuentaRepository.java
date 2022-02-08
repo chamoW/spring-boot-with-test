@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ICuentaRepository extends JpaRepository<Cuenta, Long> {
-//    List<Cuenta> findAll();
+    List<Cuenta> findAll();
 
-    //Cuenta findById(Long id);
+    Optional<Cuenta> findById(Long id);
 
-    //void update(Cuenta);
+    void update(Cuenta cuenta);
 
 
     Cuenta findByPersona(String persona);

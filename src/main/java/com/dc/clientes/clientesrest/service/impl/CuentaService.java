@@ -33,8 +33,9 @@ public class CuentaService implements ICuentaService {
     }
 
     @Override
+    @Transactional
     public Cuenta save(Cuenta cuenta) {
-        return null;
+        return cuentaRepository.save(cuenta);
     }
 
     @Override
@@ -43,7 +44,7 @@ public class CuentaService implements ICuentaService {
     }
 
     @Override
-    public int revisarTotalTranferencias(Long bancoId) {
+    public int revisarTotalTransferencias(Long bancoId) {
         Banco banco = bancoRepository.findById(bancoId).orElseThrow(() -> new NullPointerException("Error"));
         return banco.getTotalTransferencias();
     }

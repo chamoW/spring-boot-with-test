@@ -19,7 +19,7 @@ public interface ICuentaService {
 
     Cuenta findById(Long id);
 
-     int revisarTotalTranferencias(Long bancoId);
+     int revisarTotalTransferencias(Long bancoId);
 
      BigDecimal revisarSaldo(Long cuentaId);
 
