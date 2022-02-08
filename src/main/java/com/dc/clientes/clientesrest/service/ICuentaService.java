@@ -15,6 +15,8 @@ public interface ICuentaService {
 
     public List<Cuenta> findAll();
 
+    Cuenta save(Cuenta cuenta);
+
     Cuenta findById(Long id);
 
      int revisarTotalTranferencias(Long bancoId);

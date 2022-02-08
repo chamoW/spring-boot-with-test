@@ -46,6 +46,20 @@ public class CuentaController extends CommonController {
 
     }
 
+    @PostMapping
+    public ResponseData save(@RequestBody Cuenta cuenta){
+        try {
+
+            Cuenta data = cuentaService.save(cuenta);
+
+            return ResponseFactory.getSuscessResponse(data);
+
+        } catch (Exception e) {
+            return ResponseFactory.getErrorResponse(e.getMessage());
+
+        }
+    }
+
 
     @GetMapping("/{id}")
     public ResponseData detalle(@PathVariable Long id) {

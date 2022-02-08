@@ -33,6 +33,11 @@ public class CuentaService implements ICuentaService {
     }
 
     @Override
+    public Cuenta save(Cuenta cuenta) {
+        return null;
+    }
+
+    @Override
     public Cuenta findById(Long id) {
         return cuentaRepository.findById(id).orElseThrow(() -> new NullPointerException());
     }
