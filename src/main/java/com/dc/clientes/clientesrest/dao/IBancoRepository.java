@@ -15,5 +15,5 @@ public interface IBancoRepository  extends JpaRepository<Banco, Long> {
 
     Optional<Banco> findById(Long id);
 
-    void update(Banco banco);
+    Banco save(Banco banco);
 }

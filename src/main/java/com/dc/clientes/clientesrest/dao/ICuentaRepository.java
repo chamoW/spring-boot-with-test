@@ -16,7 +16,7 @@ public interface ICuentaRepository extends JpaRepository<Cuenta, Long> {
 
     Optional<Cuenta> findById(Long id);
 
-    void update(Cuenta cuenta);
+    //void update(Cuenta cuenta);
 
 
     Cuenta findByPersona(String persona);
