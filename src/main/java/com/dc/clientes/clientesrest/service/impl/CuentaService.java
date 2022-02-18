@@ -65,4 +65,11 @@ public class CuentaService implements ICuentaService {
         cuentaDestino.credito(monto);
         cuentaRepository.save(cuentaDestino);
     }
+
+    @Override
+    @Transactional
+    public void deleteById(Long id) {
+        cuentaRepository.deleteById(id);
+
+    }
 }

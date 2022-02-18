@@ -9,6 +9,7 @@ import com.dc.clientes.clientesrest.dto.TransaccionDto;
 import com.dc.clientes.clientesrest.model.Cliente;
 import com.dc.clientes.clientesrest.model.Cuenta;
 import com.dc.clientes.clientesrest.service.impl.CuentaService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping(CommonController.API_CUENTAS)
@@ -47,6 +49,7 @@ public class CuentaController extends CommonController {
     }
 
     @PostMapping
+    @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseData save(@RequestBody Cuenta cuenta){
         try {
 
@@ -66,7 +69,7 @@ public class CuentaController extends CommonController {
         try {
             Cuenta cuenta = cuentaService.findById(id);
             return ResponseFactory.getSuscessResponse(cuenta);
-        } catch (Exception e) {
+        } catch (NoSuchElementException e) {
             return ResponseFactory.getErrorResponse(e.getMessage());
         }
     }
@@ -102,5 +105,16 @@ public class CuentaController extends CommonController {
         response.put("transaccion", dto);
 
         return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void eliminar(@PathVariable Long id){
+        try {
+            cuentaService.deleteById(id);
+        }catch (NoSuchElementException e) {
+
+        }
+
     }
 }

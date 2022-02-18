@@ -24,4 +24,6 @@ public interface ICuentaService {
      BigDecimal revisarSaldo(Long cuentaId);
 
      void transferir(Long numCuentaOrigen, Long numCuentaDestino, BigDecimal mongo, Long bancoId);
+
+     void deleteById(Long id);
 }
